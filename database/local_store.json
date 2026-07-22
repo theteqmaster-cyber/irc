@@ -1,0 +1,74 @@
+{
+    "users": [
+        {
+            "id": "00000000-0000-0000-0000-000000000001",
+            "email": "student@irc.co.zw",
+            "full_name": "Kudzai Moyo",
+            "tier": "scholar_monthly",
+            "credits": 500,
+            "created_at": "2026-07-21 22:56:53"
+        }
+    ],
+    "workspaces": [
+        {
+            "name": "ZIMSEC A-Level Physics & Maths",
+            "description": "Calculus, Mechanics, Waves & Electromagnetism study vault.",
+            "category": "ZIMSEC A-Level",
+            "id": "a50b9044-2f93-4172-b1ca-26834bacc9d0",
+            "created_at": "2026-07-21 22:56:53"
+        }
+    ],
+    "documents": [],
+    "document_chunks": [],
+    "chat_sessions": [
+        {
+            "workspace_id": "a50b9044-2f93-4172-b1ca-26834bacc9d0",
+            "title": "Explain Newton second law...",
+            "id": "025c2e9e-0e4d-4e91-915f-398d94666304",
+            "created_at": "2026-07-21 22:56:56"
+        }
+    ],
+    "chat_messages": [
+        {
+            "session_id": "025c2e9e-0e4d-4e91-915f-398d94666304",
+            "sender": "user",
+            "message": "Explain Newton second law",
+            "id": "f6d5570d-b5e8-4e57-9afb-9de08a18fd9a",
+            "created_at": "2026-07-21 22:56:56"
+        },
+        {
+            "session_id": "025c2e9e-0e4d-4e91-915f-398d94666304",
+            "sender": "ai",
+            "message": "Based on your uploaded course notes [Page 1]: Here is the key takeaway regarding 'Explain Newton second law': The concepts emphasize high mastery, clear definitions, and active application for exams. Review page 1 and page 2 for exact formulas and diagrams.",
+            "citations": [],
+            "id": "d55f3aec-7037-4552-90af-7b968dffee32",
+            "created_at": "2026-07-21 22:56:56"
+        }
+    ],
+    "flashcards": [],
+    "feynman_logs": [
+        {
+            "workspace_id": "a50b9044-2f93-4172-b1ca-26834bacc9d0",
+            "topic": "Newton Second Law",
+            "student_explanation": "Force equals mass times acceleration",
+            "ai_feedback": "Great job explaining Newton Second Law! You covered the core ideas clearly. To reach 100%, make sure to include the exact practical application mentioned on page 2 of your notes.",
+            "mastery_score": 85,
+            "id": "55cf11b4-ae81-4bcc-9ca0-faf20d07e123",
+            "created_at": "2026-07-21 22:57:01"
+        }
+    ],
+    "payments": [
+        {
+            "paynow_reference": "PAYNOW-ZIM-6893A9F0",
+            "poll_url": "http:\/\/localhost:8000\/api\/payments\/poll?ref=IRC-DAILY_PASS-1784674619",
+            "amount": 0.5,
+            "currency": "USD",
+            "payment_method": "EcoCash",
+            "phone_number": "0771234567",
+            "status": "paid",
+            "pass_type": "daily_pass",
+            "id": "8c70a08b-3585-4986-821f-56d37c07ec96",
+            "created_at": "2026-07-21 22:56:59"
+        }
+    ]
+}

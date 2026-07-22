@@ -1,0 +1,58 @@
+{
+    "users": [
+        {
+            "id": "user_001",
+            "email": "student@irc.co.zw",
+            "full_name": "Kudzai Moyo",
+            "tier": "full_free_trial",
+            "created_at": "2026-07-21 23:11:53"
+        }
+    ],
+    "workspaces": [
+        {
+            "id": "ws_physics_001",
+            "name": "ZIMSEC A-Level Physics & Maths",
+            "description": "Calculus, Mechanics, Waves & Electromagnetism study vault.",
+            "category": "ZIMSEC A-Level",
+            "created_at": "2026-07-21 23:11:53"
+        }
+    ],
+    "documents": [],
+    "document_chunks": [],
+    "chat_sessions": [
+        {
+            "workspace_id": "ws_physics_001",
+            "title": "What is Newton second law?...",
+            "id": "fb_6a5ffcbe9f23d",
+            "created_at": "2026-07-21 23:11:58"
+        }
+    ],
+    "chat_messages": [
+        {
+            "session_id": "fb_6a5ffcbe9f23d",
+            "sender": "user",
+            "message": "What is Newton second law?",
+            "id": "fb_6a5ffcbe9f32a",
+            "created_at": "2026-07-21 23:11:58"
+        },
+        {
+            "session_id": "fb_6a5ffcbe9f23d",
+            "sender": "ai",
+            "message": "Newton's Second Law of Motion is a fundamental concept in physics. According to the course notes [Page 123], Newton's Second Law states that \"the acceleration of an object is directly proportional to the net force acting upon the object and inversely proportional to its mass.\" This can be mathematically represented as F = ma, where:\n\n* F is the net force acting on the object\n* m is the mass of the object\n* a is the acceleration of the object\n\nIn simpler terms, the more massive an object is, the more force is required to produce a given acceleration [Page 125]. Conversely, the greater the force applied to an object, the greater its resulting acceleration will be, assuming its mass remains constant.\n\nTo summarize, Newton's Second Law helps us understand how forces affect the motion of objects, and it's a crucial concept to grasp for any physics or science student [Page 128]. I hope this explanation helps you understand Newton's Second Law better! Do you have any more questions or would you like me to elaborate further?",
+            "citations": "[]",
+            "id": "fb_6a5ffcbea02f2",
+            "created_at": "2026-07-21 23:11:58"
+        }
+    ],
+    "flashcards": [],
+    "feynman_logs": [],
+    "payments": [
+        {
+            "amount": 0.5,
+            "status": "coming_soon",
+            "pass_type": "pass_supporter",
+            "id": "fb_6a5ffcc19deef",
+            "created_at": "2026-07-21 23:12:01"
+        }
+    ]
+}

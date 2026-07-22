@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: irc_app
+    ports:
+      - "18765:80"
+    environment:
+      - APP_ENV=development
+      - APP_DEBUG=true
+      - APP_PORT=18765
+    volumes:
+      - .:/var/www/html
