@@ -1,4 +1,4 @@
--- IRC Zimbabwe (Interactive Research & Classroom) Supabase Schema
+-- StudyBee 🐝 v2.0 (Interactive AI Study Workspace & Studio Rooms)
 -- Run this in your Supabase SQL Editor to initialize pgvector and all tables
 
 -- Enable Vector Extension for RAG
@@ -143,3 +143,37 @@ CREATE TABLE IF NOT EXISTS public.payments (
     pass_type TEXT DEFAULT 'daily_pass', -- 'daily_pass', 'monthly_pass', 'credits_topup'
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
+
+-- 10. StudyBee Studio Sessions (Interactive Room Activity Logs)
+CREATE TABLE IF NOT EXISTS public.studio_sessions (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    workspace_id UUID REFERENCES public.workspaces(id) ON DELETE CASCADE,
+    studio_type TEXT NOT NULL, -- 'irac', 'feynman', 'blurting', 'worked_problems', 'sq3r', 'viva'
+    topic TEXT NOT NULL,
+    inputs JSONB DEFAULT '{}'::jsonb,
+    outputs JSONB DEFAULT '{}'::jsonb,
+    mastery_score INTEGER DEFAULT 0,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+-- 11. Past Papers & Lecturer Decoder Exam Weightings
+CREATE TABLE IF NOT EXISTS public.past_papers (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    workspace_id UUID REFERENCES public.workspaces(id) ON DELETE CASCADE,
+    paper_title TEXT NOT NULL,
+    year INTEGER,
+    high_yield_topics JSONB DEFAULT '[]'::jsonb, -- [{topic: 'Hypothesis Testing', yield: '80%', priority: 'CRITICAL'}]
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+-- 12. Live Co-Execution Study Sprints
+CREATE TABLE IF NOT EXISTS public.sprint_sessions (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    workspace_id UUID REFERENCES public.workspaces(id) ON DELETE CASCADE,
+    sprint_duration_mins INTEGER DEFAULT 15,
+    energy_level TEXT DEFAULT 'high', -- 'high', 'fog', 'commute'
+    xp_earned INTEGER DEFAULT 15,
+    status TEXT DEFAULT 'completed',
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+

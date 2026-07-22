@@ -83,6 +83,23 @@ switch ($uri) {
         (new PaymentController())->poll();
         break;
 
+    case '/api/studio/irac':
+        if ($method === 'POST') {
+            (new StudyController())->evaluateIRAC();
+        }
+        break;
+
+    case '/api/studio/blurting':
+        if ($method === 'POST') {
+            (new StudyController())->evaluateBlurting();
+        }
+        break;
+
+    case '/api/studio/decoder':
+        (new StudyController())->getLecturerDecoder();
+        break;
+
+
     default:
         require_once __DIR__ . '/../src/Views/app.php';
         break;

@@ -16,7 +16,183 @@ document.addEventListener('DOMContentLoaded', () => {
     initQuizzer();
     initRubricGrader();
     initPayments();
+    initSprintTimer();
+    initIRACStudio();
+    initBlurtingAudit();
+    initLecturerDecoder();
+    initEnergySelector();
 });
+
+// 10. StudyBee Studio Rooms & Sprint Timer Handlers
+let sprintSeconds = 900; // 15 mins
+let sprintInterval = null;
+
+function initSprintTimer() {
+    const startBtn = document.getElementById('startSprintBtn');
+    const resetBtn = document.getElementById('resetSprintBtn');
+    const clockEl = document.getElementById('sprintClock');
+
+    function updateClockDisplay() {
+        const m = Math.floor(sprintSeconds / 60);
+        const s = sprintSeconds % 60;
+        if (clockEl) {
+            clockEl.textContent = `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+        }
+    }
+
+    if (startBtn) {
+        startBtn.addEventListener('click', () => {
+            if (sprintInterval) {
+                clearInterval(sprintInterval);
+                sprintInterval = null;
+                startBtn.textContent = '▶ Resume Sprint';
+                return;
+            }
+
+            startBtn.textContent = '⏸ Pause Sprint';
+            sprintInterval = setInterval(() => {
+                if (sprintSeconds > 0) {
+                    sprintSeconds--;
+                    updateClockDisplay();
+                } else {
+                    clearInterval(sprintInterval);
+                    sprintInterval = null;
+                    alert('🎉 15-Minute Co-Execution Sprint Complete! +15 XP Earned!');
+                    updateMastery(15);
+                    startBtn.textContent = '▶ Start 15-Min Sprint';
+                    sprintSeconds = 900;
+                    updateClockDisplay();
+                }
+            }, 1000);
+        });
+    }
+
+    if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+            if (sprintInterval) clearInterval(sprintInterval);
+            sprintInterval = null;
+            sprintSeconds = 900;
+            updateClockDisplay();
+            if (startBtn) startBtn.textContent = '▶ Start 15-Min Sprint';
+        });
+    }
+}
+
+function initIRACStudio() {
+    const btn = document.getElementById('evalIracBtn');
+    const output = document.getElementById('iracOutput');
+
+    if (btn) {
+        btn.addEventListener('click', async () => {
+            const facts = document.getElementById('iracFactsText').value.trim();
+            output.innerHTML = '<div style="color:var(--primary);">StudyBee IRAC AI is analyzing legal case facts...</div>';
+
+            try {
+                const res = await fetch('/api/studio/irac', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ workspace_id: currentWorkspaceId, facts })
+                });
+                const json = await res.json();
+                if (json.status === 'success') {
+                    output.innerHTML = `
+                        <div style="background:rgba(255,183,3,0.1); border:1px solid var(--primary); padding:16px; border-radius:12px; line-height:1.6;">
+                            <div style="color:#f0f4f8;">${json.data.raw_text.replace(/\n/g, '<br>')}</div>
+                        </div>
+                    `;
+                }
+            } catch (e) {
+                output.textContent = 'Error executing IRAC analysis.';
+            }
+        });
+    }
+}
+
+function initBlurtingAudit() {
+    const btn = document.getElementById('evalBlurtingBtn');
+    const output = document.getElementById('blurtingOutput');
+
+    if (btn) {
+        btn.addEventListener('click', async () => {
+            const topic = document.getElementById('blurtingTopic').value.trim();
+            const braindump = document.getElementById('blurtingBraindump').value.trim();
+
+            if (!braindump) {
+                alert('Please enter your 5-minute memory braindump.');
+                return;
+            }
+
+            output.innerHTML = '<div style="color:var(--accent-green);">StudyBee Memory Engine is auditing your braindump...</div>';
+
+            try {
+                const res = await fetch('/api/studio/blurting', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ workspace_id: currentWorkspaceId, topic, braindump })
+                });
+                const json = await res.json();
+                if (json.status === 'success') {
+                    updateMastery(json.data.score >= 75 ? 5 : -2);
+                    output.innerHTML = `
+                        <div style="background:rgba(0,230,118,0.1); border:1px solid var(--accent-green); padding:16px; border-radius:12px; line-height:1.6;">
+                            ${json.data.feedback.replace(/\n/g, '<br>')}
+                        </div>
+                    `;
+                }
+            } catch (e) {
+                output.textContent = 'Error conducting memory audit.';
+            }
+        });
+    }
+}
+
+function initLecturerDecoder() {
+    const btn = document.getElementById('loadDecoderBtn');
+    const container = document.getElementById('decoderContainer');
+
+    if (btn) {
+        btn.addEventListener('click', async () => {
+            container.innerHTML = '<div style="color:var(--primary-orange); text-align:center; padding:20px;">Decoding lecturer exam weightings & past papers...</div>';
+
+            try {
+                const res = await fetch(`/api/studio/decoder?workspace_id=${currentWorkspaceId}`);
+                const json = await res.json();
+                container.innerHTML = '';
+
+                if (json.data && json.data.length > 0) {
+                    json.data.forEach(item => {
+                        const card = document.createElement('div');
+                        card.className = 'decoder-card';
+                        card.innerHTML = `
+                            <div>
+                                <span style="font-size:0.75rem; color:var(--text-muted); font-weight:700;">PRIORITY: ${item.priority}</span>
+                                <h4 style="color:#fff; margin:4px 0;">${item.topic}</h4>
+                                <p style="font-size:0.85rem; color:#cbd5e1;">${item.reason}</p>
+                            </div>
+                            <span class="yield-badge">${item.yield_percentage} Yield</span>
+                        `;
+                        container.appendChild(card);
+                    });
+                }
+            } catch (e) {
+                container.textContent = 'Error decoding exam patterns.';
+            }
+        });
+    }
+}
+
+function initEnergySelector() {
+    const btns = document.querySelectorAll('.energy-btn');
+    btns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            btns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const level = btn.dataset.energy;
+            console.log('Energy mode selected:', level);
+        });
+    });
+}
+
 
 // 1. Workspaces
 async function initWorkspaces() {

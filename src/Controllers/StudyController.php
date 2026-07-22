@@ -146,4 +146,55 @@ class StudyController
         $result = $this->ai->gradeEssayRubric($essay, $rubric);
         echo json_encode(['status' => 'success', 'data' => $result]);
     }
+
+    public function evaluateIRAC(): void
+    {
+        header('Content-Type: application/json');
+        $input = json_decode(file_get_contents('php://input'), true) ?? $_POST;
+        $workspaceId = $input['workspace_id'] ?? '';
+        $facts = trim($input['facts'] ?? '');
+
+        $chunks = $this->firebase->select('document_chunks', ['workspace_id' => 'eq.' . $workspaceId]);
+        $contextText = "";
+        foreach ($chunks as $c) {
+            $contextText .= $c['content'] . "\n";
+        }
+
+        $result = $this->ai->runIRACStudio($facts, $contextText);
+        echo json_encode(['status' => 'success', 'data' => $result]);
+    }
+
+    public function evaluateBlurting(): void
+    {
+        header('Content-Type: application/json');
+        $input = json_decode(file_get_contents('php://input'), true) ?? $_POST;
+        $workspaceId = $input['workspace_id'] ?? '';
+        $topic = trim($input['topic'] ?? 'General Module Topics');
+        $braindump = trim($input['braindump'] ?? '');
+
+        $chunks = $this->firebase->select('document_chunks', ['workspace_id' => 'eq.' . $workspaceId]);
+        $contextText = "";
+        foreach ($chunks as $c) {
+            $contextText .= $c['content'] . "\n";
+        }
+
+        $result = $this->ai->runBlurtingAudit($topic, $braindump, $contextText);
+        echo json_encode(['status' => 'success', 'data' => $result]);
+    }
+
+    public function getLecturerDecoder(): void
+    {
+        header('Content-Type: application/json');
+        $workspaceId = $_GET['workspace_id'] ?? $_POST['workspace_id'] ?? '';
+
+        $chunks = $this->firebase->select('document_chunks', ['workspace_id' => 'eq.' . $workspaceId]);
+        $contextText = "";
+        foreach ($chunks as $c) {
+            $contextText .= $c['content'] . "\n";
+        }
+
+        $result = $this->ai->runLecturerDecoder($contextText);
+        echo json_encode(['status' => 'success', 'data' => $result]);
+    }
 }
+

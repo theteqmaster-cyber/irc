@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IRC Zim AI v2.0 Ultimate - Beat Studley AI & NotebookLM</title>
-    <meta name="description" content="Ultimate AI study workspace built for Zimbabwean & African students. RAG notes, Feynman technique tutoring, Active Recall SRS flashcards, Exam Quizzer, Rubric Grader, and local EcoCash integration.">
+    <title>StudyBee 🐝 v2.0 - Live AI Exam Copilot & Interactive Studio Rooms</title>
+    <meta name="description" content="StudyBee v2.0: The live AI exam copilot and interactive studio workspace for varsity & college students. Features IRAC Legal Studio, Socratic Feynman Tutor, Blurting Memory Audit, Lecturer Decoder, and Co-Execution Sprints.">
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
@@ -12,39 +12,46 @@
         <!-- Top Navbar -->
         <header class="navbar">
             <div class="logo-group">
-                <div class="logo-badge">IRC 2.0</div>
+                <div class="logo-badge">StudyBee 🐝 2.0</div>
                 <div class="brand-text">
-                    <span class="brand-title">IRC Zim AI</span>
-                    <span class="brand-subtitle">⚡ Groq Llama 3.3 70B</span>
+                    <span class="brand-title">StudyBee</span>
+                    <span class="brand-subtitle">⚡ Live Studio Engine</span>
                 </div>
             </div>
             
             <div class="nav-actions">
+                <div class="energy-selector">
+                    <span style="font-size:0.75rem; color:var(--text-muted); font-weight:600;">ENERGY:</span>
+                    <button class="energy-btn active" data-energy="high">🔋 High</button>
+                    <button class="energy-btn" data-energy="fog">🪫 Fog</button>
+                    <button class="energy-btn" data-energy="commute">🚌 Commute</button>
+                </div>
+
                 <select id="workspaceSelect" class="workspace-select">
                     <!-- Populated dynamically -->
                 </select>
 
                 <button id="passBadgeBtn" class="pass-badge-btn">
                     <span id="userTierStatus">🎓 Trial</span>
-                    <span class="ecocash-badge">Support IRC</span>
+                    <span class="ecocash-badge">Support StudyBee</span>
                 </button>
             </div>
         </header>
 
-        <!-- Studley-Crushing Mastery & Exam Readiness Progress Tracker -->
+        <!-- Live Co-Execution Sprint & Mastery Bar -->
         <section class="mastery-tracker-bar">
             <div class="mastery-info-group">
-                <span class="mastery-label">🎯 PATH TO MASTERY:</span>
+                <span class="mastery-label">🐝 EXAM READINESS:</span>
                 <div class="mastery-progress-track">
                     <div id="masteryProgressBar"></div>
                 </div>
-                <span id="masteryScoreText" class="mastery-score-text">85%</span>
+                <span id="masteryScoreText" class="mastery-score-text">88%</span>
             </div>
 
             <div class="mastery-badges-group">
                 <span class="badge-tag unfamiliar">🔴 Unfamiliar (2)</span>
                 <span class="badge-tag learning">🟡 Learning (4)</span>
-                <span class="badge-tag mastered">🟢 Mastered (18)</span>
+                <span class="badge-tag mastered">🟢 Mastered (22)</span>
             </div>
         </section>
 
@@ -53,8 +60,8 @@
             <!-- Left Pane: Document Vault & Source Viewer -->
             <section class="pane-left">
                 <div class="pane-header">
-                    <span class="pane-title">📚 Course Notes Vault</span>
-                    <button class="upload-btn" onclick="document.getElementById('fileUploadInput').click()">+ Upload Notes</button>
+                    <span class="pane-title">📚 Notes & Past Papers Vault</span>
+                    <button class="upload-btn" onclick="document.getElementById('fileUploadInput').click()">+ Upload Notes/Papers</button>
                     <input type="file" id="fileUploadInput" style="display:none;" accept=".pdf,.txt,.docx" onchange="uploadFile(event)">
                 </div>
 
@@ -63,16 +70,99 @@
                 </div>
             </section>
 
-            <!-- Right Pane: AI Study Hub -->
+            <!-- Right Pane: StudyBee Interactive Studio Rooms -->
             <section class="pane-right">
-                <!-- Navigation Tabs (Desktop) -->
+                <!-- Studio Navigation Tabs (Desktop) -->
                 <div class="study-tabs">
-                    <button class="tab-btn active" data-tab="tab-chat">⚡ Groq RAG Chat</button>
-                    <button class="tab-btn" data-tab="tab-flashcards">🧠 Active Recall (SRS)</button>
+                    <button class="tab-btn active" data-tab="tab-sprint">⚡ Co-Exec Sprint</button>
+                    <button class="tab-btn" data-tab="tab-irac">⚖️ IRAC Studio</button>
+                    <button class="tab-btn" data-tab="tab-blurting">🧠 Blurting Audit</button>
+                    <button class="tab-btn" data-tab="tab-decoder">🔍 Lecturer Decoder</button>
                     <button class="tab-btn" data-tab="tab-feynman">🎯 Feynman Tutor</button>
-                    <button class="tab-btn" data-tab="tab-quiz">📝 Practice Exam</button>
-                    <button class="tab-btn" data-tab="tab-rubric">📑 Rubric Grader</button>
+                    <button class="tab-btn" data-tab="tab-flashcards">Active Recall (SRS)</button>
+                    <button class="tab-btn" data-tab="tab-chat">💬 AI Chat</button>
                 </div>
+
+                <!-- Tab 0: Live Co-Execution Sprint Runner -->
+                <div id="tab-sprint" class="tab-content active">
+                    <div class="feynman-box">
+                        <div class="sprint-banner">
+                            <div>
+                                <h4 style="color:var(--primary); margin-bottom:4px;">⚡ Live Co-Execution Study Sprint</h4>
+                                <p style="font-size:0.85rem; color:#e2e8f0;">Zero initiation friction. 15 minutes of guided, real-time focus with AI beat partner.</p>
+                            </div>
+                            <div class="sprint-timer-text" id="sprintClock">15:00</div>
+                        </div>
+
+                        <div style="display:flex; gap:10px; margin-bottom:14px;">
+                            <button id="startSprintBtn" class="send-btn" style="flex:1;">▶ Start 15-Min Sprint</button>
+                            <button id="resetSprintBtn" class="tab-btn" style="border:1px solid var(--border-glass);">Reset Timer</button>
+                        </div>
+
+                        <div id="sprintBeatContent" style="background:rgba(255,183,3,0.08); border:1px solid var(--border-glass-glow); padding:16px; border-radius:12px; font-size:0.9rem; line-height:1.6;">
+                            <b>Current Beat: Beat 1 - High-Yield Focus (Min 0-3)</b><br>
+                            Review the primary concept from your notes on the left. Prepare to answer 1 application question.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 1: IRAC Legal Studio Room -->
+                <div id="tab-irac" class="tab-content">
+                    <div class="feynman-box">
+                        <div style="background:rgba(255,183,3,0.1); border:1px solid var(--primary); padding:14px; border-radius:12px;">
+                            <h4 style="color:var(--primary); margin-bottom:4px;">⚖️ IRAC Legal Studio Room</h4>
+                            <p style="font-size:0.85rem; color:#cbd5e1;">Legal & Criminology case analysis. Step-by-step Issue, Rule, Application, & Conclusion structuring.</p>
+                        </div>
+
+                        <div>
+                            <label style="display:block; margin-bottom:6px; font-weight:600; font-size:0.9rem;">Case Facts / Legal Scenario:</label>
+                            <textarea id="iracFactsText" class="chat-input" style="width:100%; height:110px; resize:none;" placeholder="Paste case facts or legal problem scenario here..."></textarea>
+                        </div>
+
+                        <button id="evalIracBtn" class="send-btn" style="width:100%;">Generate IRAC Analysis</button>
+
+                        <div id="iracOutput" style="margin-top:12px;"></div>
+                    </div>
+                </div>
+
+                <!-- Tab 2: Blurting Memory Audit Room -->
+                <div id="tab-blurting" class="tab-content">
+                    <div class="feynman-box">
+                        <div style="background:rgba(0,230,118,0.1); border:1px solid var(--accent-green); padding:14px; border-radius:12px;">
+                            <h4 style="color:var(--accent-green); margin-bottom:4px;">🧠 Blurting & Memory Audit Room</h4>
+                            <p style="font-size:0.85rem; color:#cbd5e1;">Timed 5-minute braindump. Type everything you remember, and StudyBee AI will audit your text against your uploaded notes!</p>
+                        </div>
+
+                        <div>
+                            <label style="display:block; margin-bottom:6px; font-weight:600; font-size:0.9rem;">Target Topic:</label>
+                            <input type="text" id="blurtingTopic" class="chat-input" style="width:100%;" placeholder="e.g. Contract Law Exceptions or Photosynthesis Light Reactions">
+                        </div>
+
+                        <div>
+                            <label style="display:block; margin-bottom:6px; font-weight:600; font-size:0.9rem;">Your 5-Minute Memory Dump (Braindump):</label>
+                            <textarea id="blurtingBraindump" class="chat-input" style="width:100%; height:110px; resize:none;" placeholder="Type every fact, term, formula, or detail you can recall without looking at notes..."></textarea>
+                        </div>
+
+                        <button id="evalBlurtingBtn" class="send-btn" style="width:100%; background:var(--accent-green); color:#000;">Audit My Memory Retention</button>
+
+                        <div id="blurtingOutput" style="margin-top:12px;"></div>
+                    </div>
+                </div>
+
+                <!-- Tab 3: Lecturer Decoder & Exam Pattern Engine -->
+                <div id="tab-decoder" class="tab-content">
+                    <div class="feynman-box">
+                        <div style="background:rgba(251,133,0,0.1); border:1px solid var(--primary-orange); padding:14px; border-radius:12px;">
+                            <h4 style="color:var(--primary-orange); margin-bottom:4px;">🔍 Lecturer Decoder & Exam Pattern Engine</h4>
+                            <p style="font-size:0.85rem; color:#cbd5e1;">Reverse-engineers past exam papers and uploaded slides to pinpoint high-yield exam topics.</p>
+                        </div>
+
+                        <button id="loadDecoderBtn" class="send-btn" style="width:100%; background:var(--primary-orange); color:#000;">Decode Lecturer Exam Weightings</button>
+
+                        <div id="decoderContainer" style="margin-top:14px; display:flex; flex-direction:column; gap:10px;"></div>
+                    </div>
+                </div>
+
 
                 <!-- Tab 1: Grounded RAG Chat -->
                 <div id="tab-chat" class="tab-content active">
