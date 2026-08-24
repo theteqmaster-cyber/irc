@@ -179,10 +179,32 @@ input.border-0,
     transform: rotateY(180deg);
 }
 
-/* Custom Sleek Scrollbars */
+/* ==========================================================================
+   Universal Sleek & Invisible Scrollbars (Cross-browser Firefox + WebKit)
+   ========================================================================== */
+html, body, * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(203, 213, 225, 0.4) transparent;
+}
+
+/* Hide scrollbars completely on horizontal chips/tabs while preserving scrolling */
+.overflow-x-auto,
+.no-scrollbar {
+    scrollbar-width: none !important; /* Firefox */
+    -ms-overflow-style: none !important; /* IE and Edge */
+}
+
+.overflow-x-auto::-webkit-scrollbar,
+.no-scrollbar::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+
+/* Sleek unobtrusive WebKit scrollbars for vertical content panes */
 ::-webkit-scrollbar {
-    width: 5px;
-    height: 5px;
+    width: 4px;
+    height: 4px;
 }
 
 ::-webkit-scrollbar-track {
@@ -190,12 +212,13 @@ input.border-0,
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #e2e8f0;
+    background: rgba(203, 213, 225, 0.4);
     border-radius: 9999px;
+    transition: background 0.2s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #cbd5e1;
+    background: rgba(148, 163, 184, 0.7);
 }
 
 /* ==========================================================================
