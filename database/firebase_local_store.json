@@ -15,6 +15,13 @@
             "description": "Calculus, Mechanics, Waves & Electromagnetism study vault.",
             "category": "ZIMSEC A-Level",
             "created_at": "2026-07-21 23:11:53"
+        },
+        {
+            "name": "Computer Science & Algorithms",
+            "description": "Data structures, algorithms, and complexity analysis.",
+            "category": "Computer Science & IT",
+            "id": "fb_6a8bed5a04e91",
+            "created_at": "2026-08-24 07:06:02"
         }
     ],
     "documents": [],
@@ -25,6 +32,18 @@
             "title": "What is Newton second law?...",
             "id": "fb_6a5ffcbe9f23d",
             "created_at": "2026-07-21 23:11:58"
+        },
+        {
+            "workspace_id": "ws_physics_001",
+            "title": "hi...",
+            "id": "fb_6a8accf921e07",
+            "created_at": "2026-08-23 10:35:37"
+        },
+        {
+            "workspace_id": "ws_physics_001",
+            "title": "Explain Newton third law...",
+            "id": "fb_6a8bf04f48c79",
+            "created_at": "2026-08-24 07:18:39"
         }
     ],
     "chat_messages": [
@@ -42,10 +61,68 @@
             "citations": "[]",
             "id": "fb_6a5ffcbea02f2",
             "created_at": "2026-07-21 23:11:58"
+        },
+        {
+            "session_id": "fb_6a8accf921e07",
+            "sender": "user",
+            "message": "hi",
+            "id": "fb_6a8accf93f639",
+            "created_at": "2026-08-23 10:35:37"
+        },
+        {
+            "session_id": "fb_6a8accf921e07",
+            "sender": "ai",
+            "message": "Groq AI Response: Based on your uploaded notes [Page 1]:\nRegarding 'hi': Review key principles on Newton's laws, energy conservation, and syllabus requirements.",
+            "citations": "[]",
+            "id": "fb_6a8accf957c6a",
+            "created_at": "2026-08-23 10:35:37"
+        },
+        {
+            "session_id": "fb_6a8bf04f48c79",
+            "sender": "user",
+            "message": "Explain Newton third law",
+            "id": "fb_6a8bf04f662cc",
+            "created_at": "2026-08-24 07:18:39"
+        },
+        {
+            "session_id": "fb_6a8bf04f48c79",
+            "sender": "ai",
+            "message": "Groq AI Response: Based on your uploaded notes [Page 1]:\nRegarding 'Explain Newton third law': Review key principles on Newton's laws, energy conservation, and syllabus requirements.",
+            "citations": "[]",
+            "id": "fb_6a8bf04f82a47",
+            "created_at": "2026-08-24 07:18:39"
         }
     ],
-    "flashcards": [],
-    "feynman_logs": [],
+    "flashcards": [
+        {
+            "workspace_id": "",
+            "question": "What is Newton's 2nd Law of Motion?",
+            "answer": "F=ma. Force equals mass times acceleration.",
+            "page_reference": 1,
+            "id": "fb_6a8b11f8b0e07",
+            "created_at": "2026-08-23 15:30:00"
+        }
+    ],
+    "feynman_logs": [
+        {
+            "workspace_id": "ws_physics_001",
+            "topic": "Kinetic Energy",
+            "student_explanation": "Energy of movement",
+            "ai_feedback": "Great effort! Continue practicing explaining concepts in your own words.",
+            "mastery_score": 80,
+            "id": "fb_6a8bf02ac5d0e",
+            "created_at": "2026-08-24 07:18:02"
+        },
+        {
+            "workspace_id": "ws_physics_001",
+            "topic": "Kinetic Energy",
+            "student_explanation": "Energy of movement",
+            "ai_feedback": "Great effort! Continue practicing explaining concepts in your own words.",
+            "mastery_score": 80,
+            "id": "fb_6a8bf0519f61e",
+            "created_at": "2026-08-24 07:18:41"
+        }
+    ],
     "payments": [
         {
             "amount": 0.5,
@@ -53,6 +130,20 @@
             "pass_type": "pass_supporter",
             "id": "fb_6a5ffcc19deef",
             "created_at": "2026-07-21 23:12:01"
+        },
+        {
+            "amount": 0.5,
+            "status": "coming_soon",
+            "pass_type": "term_pass",
+            "id": "fb_6a8bf02e7bfc1",
+            "created_at": "2026-08-24 07:18:06"
+        },
+        {
+            "amount": 0.5,
+            "status": "coming_soon",
+            "pass_type": "term_pass",
+            "id": "fb_6a8bf055984bf",
+            "created_at": "2026-08-24 07:18:45"
         }
     ]
 }

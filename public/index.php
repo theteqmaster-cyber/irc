@@ -12,6 +12,11 @@ use IRC\Controllers\PaymentController;
 Env::load();
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+
+if (php_sapi_name() === 'cli-server' && is_file(__DIR__ . $uri)) {
+    return false;
+}
+
 $method = $_SERVER['REQUEST_METHOD'];
 
 header("Access-Control-Allow-Origin: *");
@@ -99,6 +104,27 @@ switch ($uri) {
         (new StudyController())->getLecturerDecoder();
         break;
 
+    case '/api/solve':
+        if ($method === 'POST') {
+            (new StudyController())->solve();
+        }
+        break;
+
+    case '/api/arena/mock':
+        (new StudyController())->generateMockExam();
+        break;
+
+    case '/api/studio/socratic':
+        if ($method === 'POST') {
+            (new StudyController())->socraticDefense();
+        }
+        break;
+
+    case '/api/studio/sq3r':
+        if ($method === 'POST') {
+            (new StudyController())->sq3rGuidance();
+        }
+        break;
 
     default:
         require_once __DIR__ . '/../src/Views/app.php';

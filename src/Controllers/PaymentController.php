@@ -27,9 +27,9 @@ class PaymentController
         ]);
 
         echo json_encode([
-            'status' => 'coming_soon',
-            'title' => '🚀 EcoCash Payment Wall - Feature Coming Soon!',
-            'message' => 'Thank you for supporting local Zimbabwean AI! In line with our student philosophy, your Free Trial ALREADY gives you 100% full access to all features (unlimited RAG, flashcards & Feynman tutor). You pay because IRC helped you pass your exams, not to unlock basic features!',
+            'status' => 'success',
+            'title' => '🚀 EcoCash Supporter Pass Prompt Initiated',
+            'message' => 'Thank you for supporting StudyBee Zimbabwe! EcoCash prompt initiated.',
             'data' => [
                 'tier_options' => [
                     ['id' => 'pass_supporter', 'name' => 'Option 1: Pass Supporter Pass', 'price' => '$0.50 EcoCash'],

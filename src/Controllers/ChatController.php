@@ -22,7 +22,7 @@ class ChatController
 
         $input = json_decode(file_get_contents('php://input'), true) ?? $_POST;
         $workspaceId = $input['workspace_id'] ?? '';
-        $question = trim($input['question'] ?? '');
+        $question = trim($input['question'] ?? ($input['message'] ?? ''));
 
         if (empty($workspaceId) || empty($question)) {
             http_response_code(400);
@@ -33,7 +33,7 @@ class ChatController
         // Retrieve chunks from Firebase
         $relevantChunks = $this->firebase->queryChunks($workspaceId, 5);
 
-        // Generate Groq Llama 3.3 70B response
+        // Generate Groq AI response
         $ragResult = $this->ai->generateRAGResponse($question, $relevantChunks);
 
         // Record session in Firebase
@@ -62,6 +62,7 @@ class ChatController
                 'session_id' => $sessionId,
                 'question' => $question,
                 'answer' => $ragResult['message'],
+                'message' => $ragResult['message'],
                 'citations' => $ragResult['citations']
             ]
         ]);

@@ -196,5 +196,91 @@ class StudyController
         $result = $this->ai->runLecturerDecoder($contextText);
         echo json_encode(['status' => 'success', 'data' => $result]);
     }
+
+    public function solve(): void
+    {
+        header('Content-Type: application/json');
+        $input = json_decode(file_get_contents('php://input'), true) ?? $_POST;
+        $workspaceId = $input['workspace_id'] ?? '';
+        $question = trim($input['question'] ?? '');
+        $subject = trim($input['subject'] ?? 'General');
+        $deepReasoning = !empty($input['deep_reasoning']);
+
+        if (empty($question)) {
+            http_response_code(400);
+            echo json_encode(['status' => 'error', 'message' => 'Question is required.']);
+            return;
+        }
+
+        $contextText = "";
+        if (!empty($workspaceId)) {
+            $chunks = $this->firebase->select('document_chunks', ['workspace_id' => 'eq.' . $workspaceId]);
+            foreach ($chunks as $c) {
+                $contextText .= $c['content'] . "\n";
+            }
+        }
+
+        $result = $this->ai->solveProblem($question, $subject, $deepReasoning, $contextText);
+        echo json_encode(['status' => 'success', 'data' => $result]);
+    }
+
+    public function generateMockExam(): void
+    {
+        header('Content-Type: application/json');
+        $input = json_decode(file_get_contents('php://input'), true) ?? $_POST;
+        $workspaceId = $input['workspace_id'] ?? ($_GET['workspace_id'] ?? '');
+        $subject = trim($input['subject'] ?? 'ZIMSEC / University Module');
+
+        $chunks = $this->firebase->select('document_chunks', ['workspace_id' => 'eq.' . $workspaceId]);
+        $contextText = "";
+        foreach ($chunks as $c) {
+            $contextText .= $c['content'] . "\n";
+        }
+
+        $exam = $this->ai->generateTimedMockExam($subject, $contextText);
+        echo json_encode(['status' => 'success', 'data' => $exam]);
+    }
+
+    public function socraticDefense(): void
+    {
+        header('Content-Type: application/json');
+        $input = json_decode(file_get_contents('php://input'), true) ?? $_POST;
+        $workspaceId = $input['workspace_id'] ?? '';
+        $topic = trim($input['topic'] ?? 'General Concept');
+        $argument = trim($input['argument'] ?? '');
+
+        if (empty($argument)) {
+            http_response_code(400);
+            echo json_encode(['status' => 'error', 'message' => 'Argument is required.']);
+            return;
+        }
+
+        $chunks = $this->firebase->select('document_chunks', ['workspace_id' => 'eq.' . $workspaceId]);
+        $contextText = "";
+        foreach ($chunks as $c) {
+            $contextText .= $c['content'] . "\n";
+        }
+
+        $result = $this->ai->evaluateSocraticDefense($topic, $argument, $contextText);
+        echo json_encode(['status' => 'success', 'data' => $result]);
+    }
+
+    public function sq3rGuidance(): void
+    {
+        header('Content-Type: application/json');
+        $input = json_decode(file_get_contents('php://input'), true) ?? $_POST;
+        $workspaceId = $input['workspace_id'] ?? '';
+        $topic = trim($input['topic'] ?? 'Core Section');
+        $step = trim($input['step'] ?? 'Survey');
+
+        $chunks = $this->firebase->select('document_chunks', ['workspace_id' => 'eq.' . $workspaceId]);
+        $contextText = "";
+        foreach ($chunks as $c) {
+            $contextText .= $c['content'] . "\n";
+        }
+
+        $result = $this->ai->runSQ3RGuidance($topic, $contextText, $step);
+        echo json_encode(['status' => 'success', 'data' => $result]);
+    }
 }
 
