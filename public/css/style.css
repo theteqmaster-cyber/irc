@@ -70,45 +70,27 @@ input.border-0,
     border: 1px solid rgba(147, 51, 234, 0.25) !important;
 }
 
-/* Sidebar Collapsed State */
+/* Sidebar Smooth Transitions */
+aside#mainSidebar {
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                padding 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.25s ease,
+                border 0.3s ease;
+    border-right: 1px solid rgba(15, 23, 42, 0.06);
+    overflow: hidden;
+}
+
+/* Sidebar Fully Collapsed State - Cleanly hides sidebar, icons, and borders */
 #mainSidebar.collapsed {
-    width: 5rem !important; /* 80px */
-}
-
-#mainSidebar.collapsed .nav-label,
-#mainSidebar.collapsed .user-info {
-    display: none !important;
-}
-
-#mainSidebar.collapsed .nav-item {
-    justify-content: center;
-    padding-left: 0;
-    padding-right: 0;
-    position: relative;
-}
-
-#mainSidebar.collapsed .nav-item::after {
-    content: attr(data-tooltip);
-    position: absolute;
-    left: calc(100% + 12px);
-    top: 50%;
-    transform: translateY(-50%);
-    background: #0f172a;
-    color: #f8fafc;
-    padding: 6px 14px;
-    border-radius: 12px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    white-space: nowrap;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.15s ease;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    z-index: 100;
-}
-
-#mainSidebar.collapsed .nav-item:hover::after {
-    opacity: 1;
+    width: 0 !important;
+    min-width: 0 !important;
+    max-width: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    border-right: 0px solid transparent !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    visibility: hidden;
 }
 
 /* Smooth Nav Items & Active Pill Styling (No square borders) */
