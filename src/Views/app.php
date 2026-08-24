@@ -51,6 +51,9 @@
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     
+    <!-- Favicon: StudyBee Mascot -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 210'><defs><linearGradient id='bg' x1='60' y1='60' x2='180' y2='180' gradientUnits='userSpaceOnUse'><stop offset='0%25' stop-color='%23FDE047'/><stop offset='100%25' stop-color='%23D97706'/></linearGradient><linearGradient id='st' x1='0' y1='0' x2='0' y2='1'><stop offset='0%25' stop-color='%231E1B4B'/><stop offset='100%25' stop-color='%230F172A'/></linearGradient><clipPath id='cp'><ellipse cx='120' cy='124' rx='52' ry='46'/></clipPath></defs><g><path d='M92 92C60 55 42 38 48 24C54 10 76 12 96 42C104 54 103 76 92 92Z' fill='%23BAE6FD' stroke='%23FFF' stroke-width='3'/><path d='M148 92C180 55 198 38 192 24C186 10 164 12 144 42C136 54 137 76 148 92Z' fill='%23BAE6FD' stroke='%23FFF' stroke-width='3'/></g><path d='M104 74C95 56 86 48 80 44' fill='none' stroke='%231E1B4B' stroke-width='4' stroke-linecap='round'/><circle cx='78' cy='42' r='7' fill='%23F59E0B'/><path d='M136 74C145 56 154 48 160 44' fill='none' stroke='%231E1B4B' stroke-width='4' stroke-linecap='round'/><circle cx='162' cy='42' r='7' fill='%23F59E0B'/><ellipse cx='120' cy='124' rx='52' ry='46' fill='url(%23bg)'/><g clip-path='url(%23cp)'><path d='M60 108C80 114 160 114 180 108L180 122C160 128 80 128 60 122Z' fill='url(%23st)'/><path d='M62 136C82 142 158 142 178 136L178 150C158 156 82 156 62 150Z' fill='url(%23st)'/><path d='M80 162C95 167 145 167 160 162L160 174C145 178 95 178 80 174Z' fill='url(%23st)'/></g><ellipse cx='102' cy='106' rx='8' ry='11' fill='%230F172A'/><circle cx='100' cy='102' r='3' fill='%23FFF'/><ellipse cx='138' cy='106' rx='8' ry='11' fill='%230F172A'/><circle cx='136' cy='102' r='3' fill='%23FFF'/><ellipse cx='90' cy='116' rx='7' ry='4.5' fill='%23FB7185'/><ellipse cx='150' cy='116' rx='7' ry='4.5' fill='%23FB7185'/><path d='M113 115Q120 123 127 115' fill='none' stroke='%230F172A' stroke-width='3' stroke-linecap='round'/><g transform='translate(120, 68) rotate(-4) translate(-120, -68)'><ellipse cx='120' cy='72' rx='16' ry='6' fill='%231E1B4B'/><polygon points='120,52 154,64 120,74 86,64' fill='%234338CA' stroke='%236366F1' stroke-width='1.5'/><circle cx='120' cy='63' r='3' fill='%23FBBF24'/></g></svg>">
+    
     <!-- Custom Helper Styles (3D Card flips, transitions, scrollbars) -->
     <link rel="stylesheet" href="/css/style.css">
 </head>
@@ -66,12 +69,118 @@
                     <i data-lucide="menu" class="w-5 h-5"></i>
                 </button>
                 
-                <div id="headerHomeBtn" class="flex items-center gap-3 cursor-pointer select-none group" title="Return to Dashboard">
-                    <div class="w-9 h-9 rounded-2xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-purple-500 flex items-center justify-center text-white shadow-md shadow-indigo-200 group-hover:scale-105 transition-transform">
-                        <i data-lucide="zap" class="w-5 h-5"></i>
+                <div id="headerHomeBtn" class="flex items-center gap-2.5 cursor-pointer select-none group py-1" title="StudyBee AI Study Agent">
+                    <div class="relative flex flex-col items-center justify-center header-mascot-container">
+                        <!-- High-Fidelity Scalable Header Bee Mascot (Floating & Suspended) -->
+                        <svg class="w-10 h-10 header-bee-svg filter drop-shadow-xs" viewBox="0 0 240 210" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="hBeeBodyGrad" x1="60" y1="60" x2="180" y2="180" gradientUnits="userSpaceOnUse">
+                                    <stop offset="0%" stop-color="#FDE047" />
+                                    <stop offset="35%" stop-color="#FBBF24" />
+                                    <stop offset="75%" stop-color="#F59E0B" />
+                                    <stop offset="100%" stop-color="#D97706" />
+                                </linearGradient>
+                                <linearGradient id="hBeeStripeGrad" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="#1E1B4B" />
+                                    <stop offset="100%" stop-color="#0F172A" />
+                                </linearGradient>
+                                <linearGradient id="hBeeWingGradL" x1="40" y1="30" x2="110" y2="100" gradientUnits="userSpaceOnUse">
+                                    <stop offset="0%" stop-color="#E0F2FE" stop-opacity="0.95" />
+                                    <stop offset="60%" stop-color="#BAE6FD" stop-opacity="0.75" />
+                                    <stop offset="100%" stop-color="#7DD3FC" stop-opacity="0.45" />
+                                </linearGradient>
+                                <linearGradient id="hBeeWingGradR" x1="200" y1="30" x2="130" y2="100" gradientUnits="userSpaceOnUse">
+                                    <stop offset="0%" stop-color="#E0F2FE" stop-opacity="0.95" />
+                                    <stop offset="60%" stop-color="#BAE6FD" stop-opacity="0.75" />
+                                    <stop offset="100%" stop-color="#7DD3FC" stop-opacity="0.45" />
+                                </linearGradient>
+                                <linearGradient id="hBeeCapGrad" x1="80" y1="40" x2="160" y2="70" gradientUnits="userSpaceOnUse">
+                                    <stop offset="0%" stop-color="#4338CA" />
+                                    <stop offset="100%" stop-color="#312E81" />
+                                </linearGradient>
+                                <radialGradient id="hBeeAntennaGlow" cx="50%" cy="50%" r="50%">
+                                    <stop offset="0%" stop-color="#FEF08A" />
+                                    <stop offset="60%" stop-color="#F59E0B" />
+                                    <stop offset="100%" stop-color="#D97706" />
+                                </radialGradient>
+                                <radialGradient id="hBeeCheekGlow" cx="50%" cy="50%" r="50%">
+                                    <stop offset="0%" stop-color="#FB7185" stop-opacity="0.9" />
+                                    <stop offset="100%" stop-color="#FB7185" stop-opacity="0" />
+                                </radialGradient>
+                                <clipPath id="hBeeBodyClip">
+                                    <ellipse cx="120" cy="124" rx="52" ry="46" />
+                                </clipPath>
+                            </defs>
+
+                            <!-- Wings with Flutter Animation -->
+                            <g class="h-bee-wing-left">
+                                <path d="M 92 92 C 60 55 42 38 48 24 C 54 10 76 12 96 42 C 104 54 103 76 92 92 Z" fill="url(#hBeeWingGradL)" stroke="#FFFFFF" stroke-width="2.5" />
+                                <path d="M 68 34 C 76 46 84 62 88 78" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" opacity="0.7" />
+                                <path d="M 85 96 C 65 80 52 82 54 94 C 56 104 70 106 85 98 Z" fill="url(#hBeeWingGradL)" stroke="#FFFFFF" stroke-width="1.5" opacity="0.8" />
+                            </g>
+                            <g class="h-bee-wing-right">
+                                <path d="M 148 92 C 180 55 198 38 192 24 C 186 10 164 12 144 42 C 136 54 137 76 148 92 Z" fill="url(#hBeeWingGradR)" stroke="#FFFFFF" stroke-width="2.5" />
+                                <path d="M 172 34 C 164 46 156 62 152 78" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" opacity="0.7" />
+                                <path d="M 155 96 C 175 80 188 82 186 94 C 184 104 170 106 155 98 Z" fill="url(#hBeeWingGradR)" stroke="#FFFFFF" stroke-width="1.5" opacity="0.8" />
+                            </g>
+
+                            <!-- Antennae -->
+                            <g class="h-bee-antenna-left">
+                                <path d="M 104 74 C 95 56 86 48 80 44" fill="none" stroke="#1E1B4B" stroke-width="4" stroke-linecap="round" />
+                                <circle cx="78" cy="42" r="7" fill="url(#hBeeAntennaGlow)" stroke="#F59E0B" stroke-width="1.5" />
+                            </g>
+                            <g class="h-bee-antenna-right">
+                                <path d="M 136 74 C 145 56 154 48 160 44" fill="none" stroke="#1E1B4B" stroke-width="4" stroke-linecap="round" />
+                                <circle cx="162" cy="42" r="7" fill="url(#hBeeAntennaGlow)" stroke="#F59E0B" stroke-width="1.5" />
+                            </g>
+
+                            <!-- Stinger -->
+                            <path d="M 120 184 L 114 168 L 126 168 Z" fill="#0F172A" />
+
+                            <!-- Body -->
+                            <ellipse cx="120" cy="124" rx="52" ry="46" fill="url(#hBeeBodyGrad)" />
+                            <g clip-path="url(#hBeeBodyClip)">
+                                <path d="M 60 108 C 80 114 160 114 180 108 L 180 122 C 160 128 80 128 60 122 Z" fill="url(#hBeeStripeGrad)" />
+                                <path d="M 62 136 C 82 142 158 142 178 136 L 178 150 C 158 156 82 156 62 150 Z" fill="url(#hBeeStripeGrad)" />
+                                <path d="M 80 162 C 95 167 145 167 160 162 L 160 174 C 145 178 95 178 80 174 Z" fill="url(#hBeeStripeGrad)" />
+                                <ellipse cx="120" cy="85" rx="34" ry="8" fill="#FFFFFF" opacity="0.35" />
+                            </g>
+
+                            <!-- Eyes -->
+                            <g>
+                                <ellipse class="bee-eye-pupil" cx="102" cy="106" rx="8.5" ry="11.5" fill="#0F172A" />
+                                <circle cx="100" cy="102" r="3.5" fill="#FFFFFF" />
+                                <circle cx="104" cy="111" r="1.5" fill="#FFFFFF" />
+                            </g>
+                            <g>
+                                <ellipse class="bee-eye-pupil" cx="138" cy="106" rx="8.5" ry="11.5" fill="#0F172A" />
+                                <circle cx="136" cy="102" r="3.5" fill="#FFFFFF" />
+                                <circle cx="140" cy="111" r="1.5" fill="#FFFFFF" />
+                            </g>
+
+                            <!-- Cheeks -->
+                            <ellipse cx="89" cy="116" rx="7.5" ry="5" fill="url(#hBeeCheekGlow)" />
+                            <ellipse cx="151" cy="116" rx="7.5" ry="5" fill="url(#hBeeCheekGlow)" />
+
+                            <!-- Cute Smile -->
+                            <path d="M 113 115 Q 120 123 127 115" fill="none" stroke="#0F172A" stroke-width="3" stroke-linecap="round" />
+                            <path d="M 116 117 Q 120 122 124 117 Z" fill="#FB7185" opacity="0.9" />
+
+                            <!-- Academic Mortarboard Cap -->
+                            <g transform="translate(120, 68) rotate(-4) translate(-120, -68)">
+                                <ellipse cx="120" cy="72" rx="16" ry="6" fill="#1E1B4B" />
+                                <polygon points="120,52 154,64 120,74 86,64" fill="url(#hBeeCapGrad)" stroke="#6366F1" stroke-width="1.5" />
+                                <circle cx="120" cy="63" r="3" fill="#FBBF24" />
+                                <path d="M 120 63 C 132 65 142 72 144 82" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" />
+                                <rect x="141" y="81" width="5" height="7" rx="1.5" fill="#F59E0B" />
+                            </g>
+                        </svg>
+
+                        <!-- Micro Spatial Shadow Underneath Floating Bee -->
+                        <div class="header-bee-shadow"></div>
                     </div>
                     <div class="flex items-center gap-2">
-                        <span class="font-bold text-lg text-slate-900 tracking-tight group-hover:text-indigo-600 transition-colors">StudyBee</span>
+                        <span class="font-bold text-lg text-slate-900 tracking-tight group-hover:text-amber-600 transition-colors">StudyBee</span>
                         <span class="text-[11px] font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-gradient-to-r from-amber-100 to-orange-100 text-amber-700 border border-amber-200/60 shadow-xs">2.0</span>
                     </div>
                 </div>
@@ -1041,14 +1150,14 @@
             <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200/80 space-y-3">
                 <div>
                     <label class="block text-[11px] font-bold text-slate-700 mb-1">Select Supporter Pass:</label>
-                    <select id="supporterOptionSelect" class="w-full bg-white border border-slate-200 text-xs font-semibold px-3 py-2 rounded-xl">
+                    <select id="supporterOptionSelect" class="w-full bg-white border border-slate-200 text-xs font-semibold px-3.5 py-2.5 rounded-2xl">
                         <option value="term_pass">Exam Term Pass - $0.50 EcoCash</option>
                         <option value="year_pass">Full Academic Year Pass - $3.00 EcoCash</option>
                     </select>
                 </div>
                 <div>
                     <label class="block text-[11px] font-bold text-slate-700 mb-1">EcoCash Phone Number:</label>
-                    <input type="text" id="ecocashPhoneNumber" class="w-full bg-white border border-slate-200 text-xs font-medium px-3 py-2 rounded-xl" placeholder="077XXXXXXX">
+                    <input type="text" id="ecocashPhoneNumber" class="w-full bg-white border border-slate-200 text-xs font-medium px-3.5 py-2.5 rounded-2xl" placeholder="077XXXXXXX">
                 </div>
             </div>
             <button id="submitEcocashPayBtn" class="w-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 text-white font-bold text-xs py-3 rounded-2xl shadow-lg shadow-amber-200 transition-all">Pay via EcoCash</button>
@@ -1072,11 +1181,11 @@
             <div class="space-y-3">
                 <div>
                     <label class="block text-[11px] font-bold text-slate-700 mb-1">Course / Subject Name:</label>
-                    <input type="text" id="newWorkspaceNameInput" class="w-full bg-slate-50 border border-slate-200 text-xs font-medium px-3 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500" placeholder="e.g. Computer Science & Data Structures">
+                    <input type="text" id="newWorkspaceNameInput" class="w-full bg-slate-50 border border-slate-200 text-xs font-medium px-3.5 py-2.5 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500" placeholder="e.g. Computer Science & Data Structures">
                 </div>
                 <div>
                     <label class="block text-[11px] font-bold text-slate-700 mb-1">Academic Category:</label>
-                    <select id="newWorkspaceCategorySelect" class="w-full bg-slate-50 border border-slate-200 text-xs font-semibold px-3 py-2.5 rounded-xl">
+                    <select id="newWorkspaceCategorySelect" class="w-full bg-slate-50 border border-slate-200 text-xs font-semibold px-3.5 py-2.5 rounded-2xl">
                         <option value="ZIMSEC A-Level">ZIMSEC A-Level</option>
                         <option value="University Engineering">University Engineering</option>
                         <option value="Law & Humanities">Law & Humanities</option>
@@ -1088,12 +1197,12 @@
                 </div>
                 <div>
                     <label class="block text-[11px] font-bold text-slate-700 mb-1">Description (Optional):</label>
-                    <textarea id="newWorkspaceDescInput" class="w-full bg-slate-50 border border-slate-200 text-xs font-medium px-3 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 resize-none h-16" placeholder="Module topics, lecturer focus, or past paper notes..."></textarea>
+                    <textarea id="newWorkspaceDescInput" class="w-full bg-slate-50 border border-slate-200 text-xs font-medium px-3.5 py-2.5 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 resize-none h-16" placeholder="Module topics, lecturer focus, or past paper notes..."></textarea>
                 </div>
             </div>
             <div class="flex gap-2 pt-2">
-                <button id="cancelNewWorkspaceBtn" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs py-2.5 rounded-xl transition-all">Cancel</button>
-                <button id="submitNewWorkspaceBtn" class="flex-2 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 text-white font-bold text-xs py-2.5 rounded-xl shadow-md shadow-indigo-200 transition-all">Create Vault</button>
+                <button id="cancelNewWorkspaceBtn" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs py-2.5 rounded-2xl transition-all">Cancel</button>
+                <button id="submitNewWorkspaceBtn" class="flex-2 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 text-white font-bold text-xs py-2.5 rounded-2xl shadow-md shadow-indigo-200 transition-all">Create Vault</button>
             </div>
         </div>
     </div>

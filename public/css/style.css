@@ -1,44 +1,73 @@
 /* Custom helper styles that complement Tailwind CSS */
 
-/* Delicate, thin, almost-invisible hairline borders for cards and boundaries */
+/* Delicate, smooth hairline borders for cards and boundaries */
 .bg-white.rounded-3xl,
 .bg-white.rounded-2xl,
-.border-slate-100,
 .glass-card {
-    border: 1px solid rgba(15, 23, 42, 0.07) !important;
-    box-shadow: 0 10px 25px -4px rgba(99, 102, 241, 0.04), 0 2px 6px -1px rgba(15, 23, 42, 0.02) !important;
+    border: 1px solid rgba(15, 23, 42, 0.06);
+    box-shadow: 0 10px 25px -4px rgba(99, 102, 241, 0.04), 0 2px 6px -1px rgba(15, 23, 42, 0.02);
 }
 
 /* Header & Sidebar Hairline Borders */
 header {
-    border-bottom: 1px solid rgba(15, 23, 42, 0.06) !important;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.06);
 }
 
 aside#mainSidebar {
-    border-right: 1px solid rgba(15, 23, 42, 0.06) !important;
+    border-right: 1px solid rgba(15, 23, 42, 0.06);
 }
 
-/* Subtle micro-borders for sub-containers and inputs */
+/* Subtle micro-borders for sub-containers */
 .bg-slate-50,
 .sub-panel {
-    border: 1px solid rgba(15, 23, 42, 0.05) !important;
+    border: 1px solid rgba(15, 23, 42, 0.05);
+    border-radius: 1rem;
 }
 
-input, textarea, select {
-    border: 1px solid rgba(15, 23, 42, 0.08) !important;
-    transition: all 0.2s ease;
+/* Smooth Rounded Inputs, Selects & Textareas */
+input:not(.border-0), select:not(.border-0), textarea:not(.border-0) {
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 1rem !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-input:focus, textarea:focus, select:focus {
+input:not(.border-0):focus, select:not(.border-0):focus, textarea:not(.border-0):focus {
     border-color: rgba(99, 102, 241, 0.45) !important;
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.08) !important;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.08) !important;
+    outline: none !important;
+}
+
+/* Seamless Borderless Textareas inside Omnibar / Cards */
+.border-0,
+textarea.border-0,
+input.border-0,
+#dashboardOmniInput,
+#dashboardOmniInput:focus {
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
 }
 
 /* Pill buttons & tabs borders */
 .subject-pill, 
 .method-pill-btn, 
-.sq3r-step-btn {
-    border: 1px solid rgba(15, 23, 42, 0.07) !important;
+.sq3r-step-btn,
+.omni-mode-chip,
+.prompt-chip,
+.vault-tab-btn {
+    border-radius: 9999px !important;
+    border: 1px solid rgba(15, 23, 42, 0.06);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.method-pill-btn.active,
+.omni-mode-chip.active,
+.sq3r-step-btn.active {
+    border: 1px solid transparent !important;
+}
+
+.subject-pill.active {
+    border: 1px solid rgba(147, 51, 234, 0.25) !important;
 }
 
 /* Sidebar Collapsed State */
@@ -66,8 +95,8 @@ input:focus, textarea:focus, select:focus {
     transform: translateY(-50%);
     background: #0f172a;
     color: #f8fafc;
-    padding: 5px 12px;
-    border-radius: 8px;
+    padding: 6px 14px;
+    border-radius: 12px;
     font-size: 0.75rem;
     font-weight: 600;
     white-space: nowrap;
@@ -82,16 +111,28 @@ input:focus, textarea:focus, select:focus {
     opacity: 1;
 }
 
-/* Active Nav Item Styling */
+/* Smooth Nav Items & Active Pill Styling (No square borders) */
+.nav-item {
+    border-radius: 1rem !important;
+    border: 1px solid transparent !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-item:hover {
+    background-color: rgba(241, 245, 249, 0.7) !important;
+}
+
 .nav-item.active {
-    background: linear-gradient(to right, #eef2ff, #faf5ff) !important;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(168, 85, 247, 0.08)) !important;
     color: #4f46e5 !important;
-    border-right: 3px solid #6366f1;
+    border: 1px solid rgba(99, 102, 241, 0.18) !important;
+    box-shadow: 0 4px 14px -2px rgba(99, 102, 241, 0.1) !important;
 }
 
 .nav-item.active div {
-    background-color: #6366f1 !important;
+    background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
     color: #ffffff !important;
+    box-shadow: 0 4px 10px -1px rgba(99, 102, 241, 0.3) !important;
 }
 
 /* View Pane Visibility */
@@ -383,4 +424,84 @@ input:focus, textarea:focus, select:focus {
     color: #4338ca;
     box-shadow: 0 4px 12px -2px rgba(99, 102, 241, 0.12);
 }
+
+/* ==========================================================================
+   Header StudyBee Logo: Floating & Suspended in Air (No Borders)
+   ========================================================================== */
+.header-mascot-container {
+    position: relative;
+    width: 44px;
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-bee-svg {
+    width: 38px;
+    height: 38px;
+    animation: headerBeeFloat 3.2s ease-in-out infinite;
+    transform-origin: center center;
+    cursor: pointer;
+    filter: drop-shadow(0 4px 8px rgba(245, 158, 11, 0.32));
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+@keyframes headerBeeFloat {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-4.5px) rotate(2deg);
+    }
+}
+
+.header-bee-shadow {
+    position: absolute;
+    bottom: 2px;
+    width: 20px;
+    height: 4.5px;
+    background: radial-gradient(ellipse at center, rgba(217, 119, 6, 0.28) 0%, rgba(217, 119, 6, 0) 75%);
+    border-radius: 50%;
+    animation: headerShadowPulse 3.2s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes headerShadowPulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.65;
+    }
+    50% {
+        transform: scale(0.68);
+        opacity: 0.22;
+    }
+}
+
+/* Wing fluttering on idle & hover */
+.h-bee-wing-left {
+    transform-origin: 90px 92px;
+    animation: wingFlapL 0.14s ease-in-out infinite alternate;
+}
+
+.h-bee-wing-right {
+    transform-origin: 150px 92px;
+    animation: wingFlapR 0.14s ease-in-out infinite alternate;
+}
+
+.h-bee-antenna-left {
+    transform-origin: 105px 78px;
+    animation: antennaSwayL 2.4s ease-in-out infinite alternate;
+}
+
+.h-bee-antenna-right {
+    transform-origin: 135px 78px;
+    animation: antennaSwayR 2.4s ease-in-out infinite alternate;
+}
+
+#headerHomeBtn:hover .header-bee-svg {
+    filter: drop-shadow(0 7px 12px rgba(245, 158, 11, 0.48));
+}
+
+
 
